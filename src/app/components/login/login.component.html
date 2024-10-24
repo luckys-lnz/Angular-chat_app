@@ -1,0 +1,33 @@
+<div class="form-container mat-elevation-z5">
+    <p>Login</p>
+    <form [formGroup]="loginForm" (submit)="onSubmit()">
+        <mat-form-field>
+            <input matInput placeholder="Email Address" formControlName="email" type="email" required>
+            @if (loginForm.get('email')?.errors && loginForm.get('email')?.touched) {
+            <mat-error>
+                Please enter a valid email address
+            </mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password" type="password" required>
+            @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+            <mat-error>
+                Password must be at least 6 characters
+            </mat-error>
+            }
+        </mat-form-field>
+
+        <div class="center margin-top">
+            <button mat-raised-button type="submit" color="primary" [disabled]="loginForm.invalid">Submit</button>
+        </div>
+
+        <div class="center margin-top">
+            <span>New To Our PlatForm? <a class="sign-up-link" routerLink="/sign-up">Sign Up</a></span>
+        </div>
+    </form>
+</div>
+
+
+<router-outlet></router-outlet>
